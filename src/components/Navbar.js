@@ -94,14 +94,14 @@ function Navbar() {
             <NavItem to="/sellNFT" text="List a new NFT in the marketplace" currentPath={location.pathname} />
             <li>
               <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>
-                {connected ? "Connected" : "Connect Wallet"}
+                {connected ? "Connect" : "Connect Wallet"}
               </button>
             </li>
           </ul>
         </div>
       </nav>
       {connected && (
-        <div className="container mx-auto text-left text-sm mt-1 ml-17 text-green-400">
+        <div className="container mx-auto text-right text-sm mt-1 ml-17 text-green-400">
           {`Connected to ${currAddress.substring(0, 30)}...`}
         </div>
       )}
