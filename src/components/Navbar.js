@@ -62,7 +62,7 @@ function Navbar() {
         updateButton();
       }
       window.ethereum.on('accountsChanged', function (accounts) {
-        window.location.replace(location.pathname);
+        window.location.reload();
       });
     } catch (error) {
       console.error("Error in useEffect:", error);

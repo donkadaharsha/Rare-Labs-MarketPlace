@@ -10,7 +10,7 @@ export default function SellNFT () {
     const ethers = require("ethers");
     const [message, updateMessage] = useState('');
     const [transactionHash, setTransactionHash] = useState('');
-    const location = useLocation();
+    // const location = useLocation();
 
     async function OnChangeFile(e) {
         var file = e.target.files[0];

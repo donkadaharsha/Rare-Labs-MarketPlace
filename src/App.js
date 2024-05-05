@@ -1,10 +1,8 @@
 import './App.css';
-import Navbar from './components/Navbar.js';
 import Marketplace from './components/Marketplace';
 import SellNFT from './components/SellNFT';
 import NFTPage from './components/NFTpage';
 import {
-  BrowserRouter,
   Routes,
   Route,
 } from "react-router-dom";
