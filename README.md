@@ -79,7 +79,7 @@ Input Validation: Input parameters are validated to ensure that only valid data 
 
 ## Web Application Security
 HTTPS: The marketplace frontend is deployed using HTTPS, ensuring encrypted communication between users and the application, mitigating the risk of data interception and tampering.
-Content Security Policy (CSP): Implementing CSP headers helps mitigate the risk of XSS (Cross-Site Scripting) attacks by specifying approved sources for content, scripts, and other resources.
+
 
 # References
 Alchemy: https://www.youtube.com/watch?v=y6JfVdcJh1k&t=5078s 
