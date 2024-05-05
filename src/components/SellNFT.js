@@ -9,6 +9,7 @@ export default function SellNFT () {
     const [fileURL, setFileURL] = useState(null);
     const ethers = require("ethers");
     const [message, updateMessage] = useState('');
+    const [transactionHash, setTransactionHash] = useState('');
     const location = useLocation();
 
     async function OnChangeFile(e) {
@@ -65,12 +66,10 @@ export default function SellNFT () {
             console.log(metadataURL)
             let transaction = await contract.createToken(metadataURL, price, {value: listingPrice});
             await transaction.wait();
-
-            console.log(transaction)
+            setTransactionHash(transaction.hash)
             alert("Listed")
             updateMessage("");
             updateFormParams({name:'', description:'', price:''})
-            window.location.replace("/");
         }catch(e){
             alert("Upload error", e)
         }
@@ -80,7 +79,7 @@ export default function SellNFT () {
         <div className="min-h-screen">
         <Navbar />
         <div className="flex justify-center items-center mt-10">
-          <form className="bg-white shadow-lg rounded-lg p-8 max-w-md">
+          <form className="bg-white shadow-lg rounded-lg p-8 max-w-md ">
             <h3 className="text-center text-3xl font-bold text-black mb-8">Enter NFT details</h3>
             <div className="mb-6">
               <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">Name of the NFT</label>
@@ -126,6 +125,7 @@ export default function SellNFT () {
               />
             </div>
             <div className="text-red-500 text-center mb-4">{message}</div>
+            <div>{transactionHash}</div>
             <button
               onClick={listNFT}
               className="w-full bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md shadow-md"

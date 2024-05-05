@@ -6,6 +6,7 @@ function Navbar() {
   const [currAddress, setCurrAddress] = useState('0x');
   const location = useLocation();
 
+  // Function to get the user's Ethereum address
   async function getAddress() {
     try {
       const ethers = require("ethers");
@@ -18,17 +19,21 @@ function Navbar() {
     }
   }
 
+  // Function to update the Connect Wallet button
   async function updateButton() {
     try {
       const ethereumButton = document.querySelector('.enableEthereumButton');
-      ethereumButton.textContent = "Connected";
-      ethereumButton.classList.remove("hover:bg-blue-70", "bg-blue-500");
-      ethereumButton.classList.add("hover:bg-green-700", "bg-green-500");
+      if (ethereumButton) {
+        ethereumButton.textContent = "Connected";
+        ethereumButton.classList.remove("hover:bg-blue-700", "bg-blue-500");
+        ethereumButton.classList.add("hover:bg-green-700", "bg-green-500");
+      }
     } catch (error) {
       console.error("Error updating button:", error);
     }
   }
 
+  // Function to connect the website to the user's wallet
   async function connectWebsite() {
     try {
       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
@@ -47,6 +52,7 @@ function Navbar() {
     }
   }
 
+  // Effect hook to check if the user is already connected to a wallet
   useEffect(() => {
     try {
       const val = window.ethereum.isConnected();
@@ -63,6 +69,7 @@ function Navbar() {
     }
   }, []);
 
+  // Component for individual navigation items
   const NavItem = ({ to, text, currentPath }) => {
     const isActive = currentPath === to;
     return (
@@ -79,28 +86,26 @@ function Navbar() {
 
   return (
     <>
-    <nav className="text-black-900 mt-5">
-      <div className="container mx-auto flex justify-between items-center py-3 text-white">
-        <Link to="/" className="font-bold text-7xl text-white">Rare Labs</Link>
-        <ul className="flex items-center space-x-8">
-          <NavItem to="/" text="Marketplace" currentPath={location.pathname} />
-          <NavItem to="/sellNFT" text="List My NFT" currentPath={location.pathname} />
-          <li>
-            <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>
-              {connected ? "Connected" : "Connect Wallet"}
-            </button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    {connected && (
-      <div className="container mx-auto text-left text-sm mt-1 ml-17 text-green-400">
-        {`Connected to ${currAddress.substring(0, 30)}...`}
-      </div>
-    )}
-  </>
-  
-    
+      <nav className="text-black-900 mt-5">
+        <div className="container mx-auto flex justify-between items-center py-3 text-white">
+          <Link to="/" className="font-bold text-7xl text-white">Rare Labs</Link>
+          <ul className="flex items-center space-x-8">
+            <NavItem to="/" text="Home" currentPath={location.pathname} />
+            <NavItem to="/sellNFT" text="List a new NFT in the marketplace" currentPath={location.pathname} />
+            <li>
+              <button className="enableEthereumButton bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm" onClick={connectWebsite}>
+                {connected ? "Connected" : "Connect Wallet"}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      {connected && (
+        <div className="container mx-auto text-left text-sm mt-1 ml-17 text-green-400">
+          {`Connected to ${currAddress.substring(0, 30)}...`}
+        </div>
+      )}
+    </>
   );
 }
 

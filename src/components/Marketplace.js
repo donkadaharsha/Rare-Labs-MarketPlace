@@ -48,6 +48,7 @@ async function getAllNFTs() {
             image: meta.Image,  
             name: meta.name,
             description: meta.description,
+            currentlyListed: i.currentlyListed
         }
         return item;
     }))
@@ -63,8 +64,8 @@ return (
     <div>
         <Navbar></Navbar>
         <div className="flex flex-col place-items-center mt-10">
-            <div className="md:text-xl font-bold text-black">
-                CLICK ON THE NFT TO VIEW DETAILS OR TO BUY THE NFT
+            <div className="md:text-xl font-bold text-white">
+               MARKETPLACE: CLICK ON THE NFT TO VIEW DETAILS OR TO BUY THE NFT
             </div>
             <div className="flex justify-around flex-wrap max-w-screen-xl text-center">
   {data.map((value, index) => {
