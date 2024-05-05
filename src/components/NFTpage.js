@@ -104,14 +104,7 @@ export default function NFTPage() {
                 <p className="text-lg text-black">Price of NFT:</p>
                 <p className="text-lg font-bold text-black">{data.price} ETH</p>
               </div>
-              <div>
-                <p className="text-lg text-black">Owner details:</p>
-                <p className="text-lg text-black">{data.owner}</p>
-              </div>
-              <div>
-                <p className="text-lg text-black">Seller details:</p>
-                <p className="text-lg text-black">{data.seller}</p>
-              </div>
+              
             </div>
             <div className="mt-8">
             {currAddress !== data.owner && currAddress !== data.seller ? (
@@ -125,7 +118,12 @@ export default function NFTPage() {
                 <div className="text-black text-lg">THIS IS YOUR NFT</div>
               )}
               <div className="mt-4 text-green text-lg">{message}</div>
-              <div>{transactionHash}</div>
+              {transactionHash && (
+              <div style={{ backgroundColor: 'green' }} className='text-black-900 text-lg'>
+              Your transaction is successful. Hash is : {transactionHash}
+            </div>
+            
+            )}
             </div>
           </div>
         </div>

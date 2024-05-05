@@ -5,7 +5,7 @@ import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
-contract NFTMarketplace is ERC721URIStorage {
+contract Marketplace is ERC721URIStorage {
     using Counters for Counters.Counter;
     
     Counters.Counter private _tokenIds;
@@ -31,14 +31,10 @@ contract NFTMarketplace is ERC721URIStorage {
 
     mapping(uint256 => ListedToken) private idToListedToken;
 
-    constructor() ERC721("NFTMarketplace", "NFTM") {
+    constructor() ERC721("Marketplace", "NFTM") {
         owner = payable(msg.sender);
     }
 
-    function updateListPrice(uint256 _listPrice) public payable {
-        require(owner == msg.sender, "Only owner can update listing price");
-        listPrice = _listPrice;
-    }
 
     function getListPrice() public view returns (uint256) {
         return listPrice;
@@ -58,8 +54,8 @@ contract NFTMarketplace is ERC721URIStorage {
     }
 
     function createToken(string memory tokenURI, uint256 price) public payable returns (uint) {
-        require(msg.value == listPrice, "Send enough ether to list");
-        require(price > 0, "Make sure price isn't negative");
+        require(msg.value == listPrice, "Sufficient ethers required");
+        require(price > 0, "Price should be greater than 0.0");
         
         _tokenIds.increment();
         uint256 newTokenId = _tokenIds.current();
@@ -73,7 +69,7 @@ contract NFTMarketplace is ERC721URIStorage {
     }
 
     function createListedToken(uint256 tokenId, uint256 price) private {
-        require(price > 0, "Make sure the price isn't negative");
+      
 
         idToListedToken[tokenId] = ListedToken(
             tokenId,
@@ -103,34 +99,11 @@ contract NFTMarketplace is ERC721URIStorage {
         return tokens;
     }
     
-    function getMyNFTs() public view returns (ListedToken[] memory) {
-        uint totalItemCount = _tokenIds.current();
-        uint itemCount = 0;
-
-        for(uint i = 0; i < totalItemCount; i++) {
-            if(idToListedToken[i + 1].owner == msg.sender || idToListedToken[i + 1].seller == msg.sender) {
-                itemCount++;
-            }
-        }
-
-        ListedToken[] memory items = new ListedToken[](itemCount);
-        uint currentIndex = 0;
-
-        for(uint i = 0; i < totalItemCount; i++) {
-            if(idToListedToken[i + 1].owner == msg.sender || idToListedToken[i + 1].seller == msg.sender) {
-                uint256 currentId = i + 1;
-                items[currentIndex] = idToListedToken[currentId];
-                currentIndex++;
-            }
-        }
-
-        return items;
-    }
 
     function executeSale(uint256 tokenId) public payable {
         uint price = idToListedToken[tokenId].price;
         address seller = idToListedToken[tokenId].seller;
-        require(msg.value == price, "Please submit the asking price in order to complete the purchase");
+        require(msg.value == price, "Price to buy");
 
         idToListedToken[tokenId].currentlyListed = false;
         idToListedToken[tokenId].seller = payable(msg.sender);

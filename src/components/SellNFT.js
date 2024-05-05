@@ -54,7 +54,7 @@ export default function SellNFT () {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            updateMessage("Please wait ... uploading");
+            updateMessage("Please confirm transaction and wait for the transaction hash");
 
             let contract = new ethers.Contract(Marketplace.address, Marketplace.abi, signer);
 
@@ -125,6 +125,11 @@ export default function SellNFT () {
               />
             </div>
             <div className="text-red-500 text-center mb-4">{message}</div>
+            {transactionHash && (
+              <div>
+                Transaction hash is: 
+              </div>
+            )}
             <div>{transactionHash}</div>
             <button
               onClick={listNFT}
