@@ -1,4 +1,4 @@
-# RARELABS
+# RARELABS (https://rarelabs.netlify.app/)
 ## What is rarelabs?
 Rarelabs is a decentralized marketplace for NFTs. Users can connect their Sepolia Ethernet wallet to list items, purchase items, and view transaction IDs.
 
