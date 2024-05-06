@@ -63,7 +63,7 @@ Once we click on an NFT, it redirects to this page where NFT details are mention
 
 # Issues
 ## Frontend: 
-Grid layout issue.
+Grid layout issue for NFT items.
 Connect button render: Slight delay in connect button to turn from blue to green, sometimes doesn't show connected though it is connected. Need to click again for rendering.
 
 ## Storage: 
@@ -80,6 +80,12 @@ Input Validation: Input parameters are validated to ensure that only valid data 
 ## Web Application Security
 HTTPS: The marketplace frontend is deployed using HTTPS, ensuring encrypted communication between users and the application, mitigating the risk of data interception and tampering.
 Content Security Policy (CSP): Implementing CSP headers helps mitigate the risk of XSS (Cross-Site Scripting) attacks by specifying approved sources for content, scripts, and other resources.
+
+# Challenges and resolution
+
+ Gas Costs: With the initial contract developed, the gas cost was too high but then I reduced the complexity of the contract. That led to reduction of gas price as well for deployment.
+
+ Deletion of sold out NFTs: I wanted to remove the sold out NFTs from the IPFS so it wont be listed in marketplace once bought, but it needed an overhead of CRUD operation. Insead, I chose to blur out the sold out items (still displayed, but not available to buy!).
 
 # References
 Alchemy: https://www.youtube.com/watch?v=y6JfVdcJh1k&t=5078s 
