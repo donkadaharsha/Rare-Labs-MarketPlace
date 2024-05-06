@@ -73,7 +73,10 @@ return (
   })}
 </div>
 
-        </div>            
+        </div> 
+        <div className="md:text-l font-bold text-white">
+            ***PLEASE WAIT FOR 5-10 MINUTES IF YOU ARE UNABLE TO VIEW LISTED ITEMS
+            </div>           
     </div>
 );
 

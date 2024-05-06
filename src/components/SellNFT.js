@@ -54,7 +54,7 @@ export default function SellNFT () {
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             const signer = provider.getSigner();
 
-            updateMessage("Please confirm transaction and wait for the transaction hash");
+            updateMessage("Please confirm transaction and wait for the transaction hash(will be displayed here)");
 
             let contract = new ethers.Contract(Marketplace.address, Marketplace.abi, signer);
 
