@@ -1,6 +1,7 @@
-# RARELABS
+# RARELABS (https://rarelabs.netlify.app/)
 ## What is rarelabs?
-Rarelabs is a decentralized marketplace for NFTs. Users can connect their Sepolia Ethernet wallet to list items, purchase items, and view transaction IDs.
+Rarelabs is a decentralized marketplace for NFTs. Users can connect their Sepolia Ethernet wallet to list items, purchase items, and view transaction IDs. NOTE: You cannot use this website without an Ethernet wallet!!
+![image](https://github.com/donkadaharsha/Rare-Labs-MarketPlace/assets/114453047/74014acc-08a8-44d5-8d1d-174089f1755b)
 
 ## Installation instructions
 npm install 
@@ -79,7 +80,7 @@ Input Validation: Input parameters are validated to ensure that only valid data 
 
 ## Web Application Security
 HTTPS: The marketplace frontend is deployed using HTTPS, ensuring encrypted communication between users and the application, mitigating the risk of data interception and tampering.
-Content Security Policy (CSP): Implementing CSP headers helps mitigate the risk of XSS (Cross-Site Scripting) attacks by specifying approved sources for content, scripts, and other resources.
+
 
 # Challenges and resolution
 
